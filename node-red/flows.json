@@ -1,0 +1,194 @@
+[
+  {
+    "id": "7bae47c8.28bd08",
+    "type": "tab",
+    "label": "Flow 1",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "5b2d0178.c45f1",
+    "type": "serial in",
+    "z": "7bae47c8.28bd08",
+    "name": "COM2",
+    "serial": "dbb13fb.f166fc",
+    "x": 410,
+    "y": 260,
+    "wires": [
+      [
+        "1c3637a5.2c7168"
+      ]
+    ]
+  },
+  {
+    "id": "1c3637a5.2c7168",
+    "type": "function",
+    "z": "7bae47c8.28bd08",
+    "name": "",
+    "func": "var output = msg.payload.split(';');\nvar nivel = parseFloat(output[0]);\nvar erro = parseFloat(output[1]);\nvar potencia = parseFloat(output[2]);\nvar msg1 = {payload:nivel};\nvar msg2 = {payload:erro};\nvar msg3 = {payload:potencia};\nmsg1.topic = \"Line1\";\n\nreturn [msg1, msg2, msg3];",
+    "outputs": 3,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 620,
+    "y": 260,
+    "wires": [
+      [
+        "70cb3c1f.de9334"
+      ],
+      [
+        "3474af60.5b72d"
+      ],
+      [
+        "58d48f7d.6a172"
+      ]
+    ]
+  },
+  {
+    "id": "58d48f7d.6a172",
+    "type": "ui_gauge",
+    "z": "7bae47c8.28bd08",
+    "name": "",
+    "group": "bf03f9b.14c8b08",
+    "order": 3,
+    "width": 0,
+    "height": 0,
+    "gtype": "gage",
+    "title": "Potência",
+    "label": "units",
+    "format": "{{value}}",
+    "min": 0,
+    "max": "200",
+    "colors": [
+      "#00b500",
+      "#e6e600",
+      "#ca3838"
+    ],
+    "seg1": "",
+    "seg2": "",
+    "x": 840,
+    "y": 360,
+    "wires": []
+  },
+  {
+    "id": "70cb3c1f.de9334",
+    "type": "ui_chart",
+    "z": "7bae47c8.28bd08",
+    "name": "",
+    "group": "bf03f9b.14c8b08",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "label": "PV",
+    "chartType": "line",
+    "legend": "false",
+    "xformat": "mm:ss",
+    "interpolate": "linear",
+    "nodata": "",
+    "dot": false,
+    "ymin": "",
+    "ymax": "",
+    "removeOlder": "30",
+    "removeOlderPoints": "",
+    "removeOlderUnit": "1",
+    "cutout": 0,
+    "useOneColor": false,
+    "useUTC": false,
+    "colors": [
+      "#1f77b4",
+      "#aec7e8",
+      "#ff7f0e",
+      "#2ca02c",
+      "#98df8a",
+      "#d62728",
+      "#ff9896",
+      "#9467bd",
+      "#c5b0d5"
+    ],
+    "outputs": 1,
+    "x": 830,
+    "y": 160,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "3474af60.5b72d",
+    "type": "ui_chart",
+    "z": "7bae47c8.28bd08",
+    "name": "",
+    "group": "bf03f9b.14c8b08",
+    "order": 2,
+    "width": 0,
+    "height": 0,
+    "label": "Erro",
+    "chartType": "line",
+    "legend": "false",
+    "xformat": "mm:ss",
+    "interpolate": "linear",
+    "nodata": "",
+    "dot": false,
+    "ymin": "",
+    "ymax": "",
+    "removeOlder": "30",
+    "removeOlderPoints": "",
+    "removeOlderUnit": "1",
+    "cutout": 0,
+    "useOneColor": false,
+    "useUTC": false,
+    "colors": [
+      "#1f77b4",
+      "#aec7e8",
+      "#ff7f0e",
+      "#2ca02c",
+      "#98df8a",
+      "#d62728",
+      "#ff9896",
+      "#9467bd",
+      "#c5b0d5"
+    ],
+    "outputs": 1,
+    "x": 830,
+    "y": 260,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "dbb13fb.f166fc",
+    "type": "serial-port",
+    "serialport": "COM2",
+    "serialbaud": "9600",
+    "databits": "8",
+    "parity": "none",
+    "stopbits": "1",
+    "waitfor": "",
+    "dtr": "none",
+    "rts": "none",
+    "cts": "none",
+    "dsr": "none",
+    "newline": "\\n",
+    "bin": "false",
+    "out": "char",
+    "addchar": "",
+    "responsetimeout": "10000"
+  },
+  {
+    "id": "bf03f9b.14c8b08",
+    "type": "ui_group",
+    "name": "",
+    "tab": "22af134a.b88c5c",
+    "order": 1,
+    "disp": true,
+    "width": "7",
+    "collapse": false
+  },
+  {
+    "id": "22af134a.b88c5c",
+    "type": "ui_tab",
+    "name": "Planta de Nível",
+    "icon": "dashboard",
+    "disabled": false,
+    "hidden": false
+  }
+]
